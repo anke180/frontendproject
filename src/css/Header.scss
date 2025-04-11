@@ -1,0 +1,31 @@
+header {
+    background-color: red;
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+    }
+}
+
+.namewebsite {
+    font-size: 20px;
+}
+
+.searchbar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; 
+    input {
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        background-color: aqua;
+        flex: 1;
+        padding: 10px;
+    }
+}
