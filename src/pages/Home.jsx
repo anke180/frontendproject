@@ -9,6 +9,7 @@ const Home = () => {
         return storeOffSet ? parseInt(storeOffSet, 10) : 0;
     });
 
+    //de next button
     function handleNextPage() {
         const newOffSet = offSet + 20;
         setOffSet(newOffSet);
@@ -16,6 +17,7 @@ const Home = () => {
         ());
     }
 
+    //de previous button
     function handlePreviousPage() {
         const newOffSet = offSet <= 20 ? 0 : offSet - 20;
         setOffSet(newOffSet);
@@ -23,6 +25,7 @@ const Home = () => {
         ());
     }
 
+    //fetched alle pokemons via de api
     useEffect(() => {
         async function fetchPokemon() {
             const apiUrl = `https://pokeapi.co/api/v2/pokemon?
@@ -36,6 +39,7 @@ const Home = () => {
         fetchPokemon();
     }, [offSet]);
 
+    //returns de navigatie en de pokemons en de onderste twee buttons
     return (
         <div className='Home maxWidth'>
             <Header />

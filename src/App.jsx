@@ -8,6 +8,7 @@ const App = () => {
     return (
         <div className="App">
             <Routes>
+                {/* de roetes naar de home en de searched pokemon paginas */}
                 <Route path={"/"} element={<Home />} />
                 <Route path={"/:pokemon"} element={<SearchedPokemon />} />
             </Routes>

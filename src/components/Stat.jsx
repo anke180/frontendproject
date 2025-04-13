@@ -1,5 +1,6 @@
 import React from "react";
 
+//dit helpt de stats.jsx
 const Stat = ({parameter,value,units}) => {
     return (
         <div className="stat">

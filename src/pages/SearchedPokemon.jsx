@@ -7,6 +7,8 @@ import "../css/SearchedPokemon.scss";
 const SearchedPokemon = () => {
     const {pokemon} = useParams();
     const [selectedPokemon, setSelectedPokemon] = useState([]);
+    
+    //alle stats die je ziet op de details pagina
     const [stats, setStats ] = useState({
         height: 0,
         weight: 0,
@@ -17,8 +19,12 @@ const SearchedPokemon = () => {
         splAttack: 0,
         splDefence: 0,
         speed: 0,
+        abilityOne: 0,
+        abilityTwo: 0,
+        id: 0,
     });
 
+    //de kleuren van de types van de pokemons
     const colours = {
         normal: "#A8A77A",
         fire: "#EE8130",
@@ -51,10 +57,12 @@ const SearchedPokemon = () => {
                 }
                 const data = await response.json();
 
+                //hier set ik de stats van de pokemons
                 setSelectedPokemon(data);
                 setStats({
-                    height: (data.height / 3.048).toFixed(1),
-                    weight: (data.weight / 10).toFixed(1),
+                    id: data.id,
+                    height: data.height,
+                    weight: data.weight,
                     exp: data.base_experience,
                     hp: data.stats[0].base_stat,
                     attack: data.stats[1].base_stat,
@@ -62,6 +70,8 @@ const SearchedPokemon = () => {
                     splAttack: data.stats[3].base_stat,
                     splDefence: data.stats[4].base_stat,
                     speed: data.stats[5].base_stat,
+                    abilityOne: data.abilities[0].ability.name,
+                    abilityTwo: data.abilities[1].ability.name,
                 });
             } catch (error) {
                 
@@ -74,6 +84,7 @@ const SearchedPokemon = () => {
     return (
         <div className="searched-pokemon">
             <div className="searched-pokemon-header">
+                {/* de back button on the detials pagina */}
                 <Link to="/">
                     <Button Label="Back"/>
                 </Link>
@@ -81,6 +92,7 @@ const SearchedPokemon = () => {
             <div className="pokemon-details">
                 <div className="searched-pokemon-info">
                     <h4>{selectedPokemon.name}</h4>
+                    {/* de types op de de details pagina */}
                     <div className="type">
                         {selectedPokemon.types?.map((type,index)=> (
                         <span key={index} style={{
@@ -88,9 +100,11 @@ const SearchedPokemon = () => {
                         }}>{type.type.name}</span>
                     ))}
                     </div>
+                    {/* alle stats */}
                     <Stats stats={stats}/>
                 </div>
 
+                {/* de normale en de shiny pokemon sprites  */}
                 <div className="previewImage">
                     <img src={selectedPokemon.sprites?.front_default} alt={selectedPokemon.name}/>
                     <img src={selectedPokemon.sprites?.front_shiny} alt={selectedPokemon.name}/>

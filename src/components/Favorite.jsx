@@ -1,0 +1,24 @@
+// import React from 'react';
+
+// const Favorite = (pokemons) => {
+//     const fav = pokemons.booksfav?.map(item => (
+//         <div className="listFavPokemons" key={pokemons.id}>
+//             <div className="namepokemon">
+//                 <h3>{pokemons.name}</h3>
+//                 <button onClick={() => pokemons.delete(item.id)}>
+//                     Delete Favorite
+//                 </button>
+//             </div>
+//         </div>
+//     ));
+
+//     return (
+//         <div className="favoritesList">
+//             {/* <h2>Favorites</h2> */}
+//             {fav}
+//         </div>
+        
+//     );
+// }
+
+// export default Favorite;

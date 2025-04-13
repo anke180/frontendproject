@@ -1,5 +1,5 @@
 header {
-    background-color: red;
+    background-color: rgb(245, 245, 245);
     padding: 1rem;
     position: fixed;
     top: 0;
@@ -10,22 +10,23 @@ header {
         align-items: center;
         justify-content: space-between;
         gap: 1rem;
-    }
-}
-
-.namewebsite {
-    font-size: 20px;
-}
-
-.searchbar {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem; 
-    input {
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        border-radius: 5px;
-        background-color: aqua;
-        flex: 1;
-        padding: 10px;
+        //de naam van website
+        .namewebsite {
+            font-size: 30px;
+            color: orange;
+        }
+        //de zoekfunctie van website 
+        .searchbar {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem; 
+            input {
+                border: 1px solid rgba(0, 0, 0, 0.1);
+                border-radius: 5px;
+                background-color: rgb(204, 247, 247);
+                flex: 1;
+                padding: 10px;
+            }
+        }
     }
 }
