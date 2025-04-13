@@ -1,11 +1,11 @@
 // import React from 'react';
 
 // const Favorite = (pokemons) => {
-//     const fav = pokemons.booksfav?.map(item => (
+//     const fav = pokemons.pokemonsfav.map(pokemon => (
 //         <div className="listFavPokemons" key={pokemons.id}>
 //             <div className="namepokemon">
 //                 <h3>{pokemons.name}</h3>
-//                 <button onClick={() => pokemons.delete(item.id)}>
+//                 <button onClick={() => pokemons.delete(pokemon.id)}>
 //                     Delete Favorite
 //                 </button>
 //             </div>
