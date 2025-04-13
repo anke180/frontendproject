@@ -3,11 +3,45 @@ import { Link, useParams } from 'react-router-dom';
 import Button from "../components/Button";
 import Stats from "../components/Stats";
 import "../css/SearchedPokemon.scss";
+import "../css/Favorites.scss";
 
 const SearchedPokemon = () => {
     const {pokemon} = useParams();
     const [selectedPokemon, setSelectedPokemon] = useState([]);
-    
+
+    const [favorites, setFavorites] = useState(() => {
+        const saved = localStorage.getItem("favorites");
+        return saved ? JSON.parse(saved) : [];
+    })
+    const isFavorite = favorites.some(fav => fav.name === selectedPokemon.name);
+
+    const toggleFavorite = () => {
+        let updatedFavorites;
+        let updatedFavoritesCounts = JSON.parse(localStorage.getItem("favoriteCounts")) || {};
+        
+        if (isFavorite) {
+            updatedFavorites = favorites.filter(fav => fav.name !== selectedPokemon.name);
+            //Track removal count
+            if (updatedFavoritesCounts[selectedPokemon.name]) {
+                updatedFavoritesCounts[selectedPokemon.name].removed += 1;
+            } else {
+                updatedFavoritesCounts[selectedPokemon.name] = { added: 0, removed: 1};
+            }
+        } else {
+            updatedFavorites = [...favorites, {name: selectedPokemon.name }];
+            // Track addition count
+            if (updatedFavoritesCounts[selectedPokemon.name]) {
+                updatedFavoritesCounts[selectedPokemon.name].added += 1;
+            } else {
+                updatedFavoritesCounts[selectedPokemon.name] = { added: 1, removed: 0};
+            }
+        }
+
+        setFavorites(updatedFavorites);
+        localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+        localStorage.setItem("favoriteCounts", JSON.stringify(updatedFavoritesCounts));
+    };
+
     //alle stats die je ziet op de details pagina
     const [stats, setStats ] = useState({
         height: 0,
@@ -100,6 +134,9 @@ const SearchedPokemon = () => {
                         }}>{type.type.name}</span>
                     ))}
                     </div>
+                    <button className="favorite-btn" onClick={toggleFavorite}>
+                    {isFavorite ? "★ Remove from Favorites" : "☆ Add to Favorites"}
+                    </button>
                     {/* alle stats */}
                     <Stats stats={stats}/>
                 </div>
